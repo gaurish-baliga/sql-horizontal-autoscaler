@@ -1,0 +1,39 @@
+{
+  "shards": {
+    "shard-1": "testuser:testpass@tcp(127.0.0.1:3306)/shard1_db"
+  },
+  "table_shard_keys": {
+    "users": "user_id",
+    "orders": "customer_id",
+    "products": "product_id"
+  },
+  "scaling_thresholds": {
+    "cpu_threshold_percent": 70,
+    "memory_threshold_percent": 85,
+    "connection_threshold": 20,
+    "qps_threshold": 1000,
+    "total_entry_threshold_per_shard": 100
+  },
+  "scaling_strategy": "hot",
+  "monitoring_interval_seconds": 15,
+  "database": {
+    "username": "testuser",
+    "password": "testpass",
+    "root_password": "rootpass"
+  },
+  "docker": {
+    "network_name": "autoscaler-network",
+    "image": "mysql:8.0",
+    "container_prefix": "mysql"
+  },
+  "ports": {
+    "base_port": 3306,
+    "query_router_port": 8080,
+    "coordinator_port": 9090
+  },
+  "limits": {
+    "max_shards": 5,
+    "max_connection_attempts": 30,
+    "connection_retry_interval_seconds": 2
+  }
+}
